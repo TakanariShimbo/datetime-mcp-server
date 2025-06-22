@@ -138,7 +138,7 @@ Claude Desktop の設定に追加：
 npm run build
 ```
 
-TypeScriptファイルを`dist/`ディレクトリ内のJavaScriptにコンパイルします。
+TypeScript ファイルを`dist/`ディレクトリ内の JavaScript にコンパイルします。
 
 ### MCP Inspector でのテスト
 
@@ -152,9 +152,9 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 1. `package.json`を更新：
 
-   - `name`フィールドを変更（@username/package-name形式を使用）
+   - `name`フィールドを変更（@username/package-name 形式を使用）
    - `description`、`author`、その他のメタデータを更新
-   - repository、bugs、homepageのURLを追加
+   - repository、bugs、homepage の URL を追加
 
 2. `index.ts`を修正：
 
@@ -163,16 +163,17 @@ npx @modelcontextprotocol/inspector node dist/index.js
    - カスタムロジックを実装
 
 3. 設定ファイルを更新：
+
    - `Dockerfile`：必要に応じて依存関係を調整
-   - GitHubワークフロー：異なるCI/CDが必要な場合は更新
+   - GitHub ワークフロー：異なる CI/CD が必要な場合は更新
 
 4. ドキュメントを更新：
-   - このREADMEをあなたのサーバーのドキュメントで置き換え
-   - LICENSEをあなたの情報で更新
+
+   - この README をあなたのサーバーのドキュメントで置き換え
 
 5. 公開設定：
-   - npmアカウントを作成してアクセストークンを生成
-   - NPM_TOKENをGitHubリポジトリのシークレットに追加
+   - npm アカウントを作成してアクセストークンを生成
+   - NPM_TOKEN を GitHub リポジトリのシークレットに追加
    - `npm run release`を使用して新しいバージョンを公開
 
 ## プロジェクト構造
@@ -183,7 +184,6 @@ datetime-mcp-server/
 ├── package.json          # パッケージ設定
 ├── tsconfig.json         # TypeScript設定
 ├── Dockerfile            # Docker設定
-├── LICENSE               # MITライセンス
 ├── .gitignore            # Gitの無視ファイル
 ├── .github/
 │   └── workflows/

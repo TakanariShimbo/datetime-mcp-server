@@ -163,12 +163,13 @@ To create your own MCP server based on this example:
    - Implement your custom logic
 
 3. Update configuration files:
+
    - `Dockerfile`: Adjust if needed for your dependencies
    - GitHub workflows: Update if you need different CI/CD
 
 4. Update documentation:
+
    - Replace this README with your server's documentation
-   - Update LICENSE with your information
 
 5. Set up publishing:
    - Create an npm account and generate an access token
@@ -183,7 +184,6 @@ datetime-mcp-server/
 ├── package.json          # Package configuration
 ├── tsconfig.json         # TypeScript configuration
 ├── Dockerfile            # Docker configuration
-├── LICENSE               # MIT license
 ├── .gitignore            # Git ignore file
 ├── .github/
 │   └── workflows/

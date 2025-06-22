@@ -30,7 +30,7 @@
   "files": [
     "dist",
     "docs/README.md",
-    "LICENSE"
+    "docs/README_ja.md"
   ],
   "engines": {
     "node": ">=18.0.0"
