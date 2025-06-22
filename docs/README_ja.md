@@ -140,11 +140,13 @@ Claude Desktop の設定に追加：
 
 ## 開発
 
-### 開発モードでの実行
+### プロジェクトのビルド
 
 ```bash
-npm run dev
+npm run build
 ```
+
+TypeScriptファイルを`dist/`ディレクトリ内のJavaScriptにコンパイルします。
 
 ### MCP Inspector でのテスト
 

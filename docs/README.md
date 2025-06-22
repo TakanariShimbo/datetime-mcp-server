@@ -140,11 +140,13 @@ Parameters:
 
 ## Development
 
-### Run in development mode
+### Build the project
 
 ```bash
-npm run dev
+npm run build
 ```
+
+This compiles TypeScript files to JavaScript in the `dist/` directory.
 
 ### Test with MCP Inspector
 
