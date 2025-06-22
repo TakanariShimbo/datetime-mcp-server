@@ -108,8 +108,8 @@ Add to your Claude Desktop configuration:
 {
   "mcpServers": {
     "datetime": {
-      "command": "node",
-      "args": ["/path/to/your/server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
       "env": {
         "DATETIME_FORMAT": "human",
         "TIMEZONE": "America/New_York"

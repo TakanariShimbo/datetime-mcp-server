@@ -108,8 +108,8 @@ Claude Desktop の設定に追加：
 {
   "mcpServers": {
     "datetime": {
-      "command": "node",
-      "args": ["/path/to/your/server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
       "env": {
         "DATETIME_FORMAT": "human",
         "TIMEZONE": "Asia/Tokyo"
