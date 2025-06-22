@@ -8,7 +8,7 @@
 - 環境変数による出力形式の設定
 - タイムゾーンのサポート
 - カスタム日付形式のサポート
-- 2 つのツール：`get_current_time`と`get_timestamp`
+- シンプルなツール：`get_current_time`
 
 ## クイックスタート
 
@@ -129,14 +129,6 @@ Claude Desktop の設定に追加：
 
 - `format`（オプション）：出力形式、DATETIME_FORMAT 環境変数を上書き
 - `timezone`（オプション）：使用するタイムゾーン、TIMEZONE 環境変数を上書き
-
-### `get_timestamp`
-
-現在の Unix タイムスタンプを取得
-
-パラメータ：
-
-- `unit`（オプション）："seconds"または"milliseconds"（デフォルト："seconds"）
 
 ## 開発
 

@@ -8,7 +8,7 @@ A Model Context Protocol (MCP) server that provides tools to get the current dat
 - Configurable output format via environment variables
 - Timezone support
 - Custom date format support
-- Two tools: `get_current_time` and `get_timestamp`
+- Simple tool: `get_current_time`
 
 ## Quick Start
 
@@ -129,14 +129,6 @@ Parameters:
 
 - `format` (optional): Output format, overrides DATETIME_FORMAT env var
 - `timezone` (optional): Timezone to use, overrides TIMEZONE env var
-
-### `get_timestamp`
-
-Get the current Unix timestamp
-
-Parameters:
-
-- `unit` (optional): "seconds" or "milliseconds" (default: "seconds")
 
 ## Development
 

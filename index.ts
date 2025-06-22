@@ -61,21 +61,6 @@ const GET_CURRENT_TIME_TOOL: Tool = {
   },
 };
 
-const GET_TIMESTAMP_TOOL: Tool = {
-  name: "get_timestamp",
-  description: "Get the current Unix timestamp",
-  inputSchema: {
-    type: "object",
-    properties: {
-      unit: {
-        type: "string",
-        enum: ["seconds", "milliseconds"],
-        description: "Unit for the timestamp (optional, defaults to 'seconds')",
-      },
-    },
-  },
-};
-
 // Server implementation
 const server = new Server(
   {
@@ -175,7 +160,7 @@ function formatCustomDate(
 
 // Tool handlers
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: [GET_CURRENT_TIME_TOOL, GET_TIMESTAMP_TOOL],
+  tools: [GET_CURRENT_TIME_TOOL],
 }));
 
 // Set up the request handler for tool calls
@@ -210,24 +195,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         isError: true,
       };
     }
-  }
-
-  if (name === "get_timestamp") {
-    const unit = (args as any)?.unit || "seconds";
-    const now = new Date();
-    const timestamp =
-      unit === "milliseconds"
-        ? now.getTime()
-        : Math.floor(now.getTime() / 1000);
-
-    return {
-      content: [
-        {
-          type: "text",
-          text: timestamp.toString(),
-        },
-      ],
-    };
   }
 
   return {
