@@ -5,10 +5,8 @@
 
 # =====================
 # 1. Validate Arguments
-# 1. 引数の検証
 #
 # Check if a version argument was provided
-# バージョン引数が提供されているかをチェック
 #
 # Examples:
 #   ./scripts/release.sh patch    → Increment patch version (0.1.3 → 0.1.4)
@@ -16,6 +14,10 @@
 #   ./scripts/release.sh major    → Increment major version (0.1.3 → 1.0.0)
 #   ./scripts/release.sh 0.2.5    → Set specific version to 0.2.5
 #   ./scripts/release.sh 1.0.0-beta.1 → Set pre-release version
+#
+# 1. 引数の検証
+#
+# バージョン引数が提供されているかをチェック
 #
 # 例:
 #   ./scripts/release.sh patch    → パッチバージョンを増分 (0.1.3 → 0.1.4)
@@ -39,16 +41,18 @@ VERSION_ARG=$1
 
 # =====================
 # 2. Parse Version Type
-# 2. バージョンタイプの解析
 #
 # Determine if argument is semantic increment or specific version
-# 引数がセマンティック増分か特定のバージョンかを判定
 #
 # Examples:
 #   Input: "patch" → INCREMENT_TYPE="patch", outputs "Using semantic increment: patch (current version: 0.1.3)"
 #   Input: "0.2.0" → SPECIFIC_VERSION="0.2.0", outputs "Using specific version: 0.2.0"
 #   Input: "1.0.0-alpha.1" → SPECIFIC_VERSION="1.0.0-alpha.1"
 #   Input: "invalid" → Error: "Version must follow semantic versioning"
+#
+# 2. バージョンタイプの解析
+#
+# 引数がセマンティック増分か特定のバージョンかを判定
 #
 # 例:
 #   入力: "patch" → INCREMENT_TYPE="patch", 出力 "Using semantic increment: patch (current version: 0.1.3)"
@@ -76,10 +80,8 @@ fi
 
 # =====================
 # 3. Git Branch Check
-# 3. Gitブランチのチェック
 #
 # Ensure we're releasing from main branch
-# mainブランチからリリースしていることを確認
 #
 # Examples:
 #   On main branch → Continue silently
@@ -87,6 +89,10 @@ fi
 #   On develop → Warning: "You are not on the main branch. Current branch: develop"
 #   User types 'n' → Script exits with code 1
 #   User types 'y' → Script continues with warning acknowledged
+#
+# 3. Gitブランチのチェック
+#
+# mainブランチからリリースしていることを確認
 #
 # 例:
 #   mainブランチ上 → 静かに続行
@@ -107,16 +113,18 @@ fi
 
 # =====================
 # 4. Git Status Check
-# 4. Gitステータスのチェック
 #
 # Ensure working directory is clean before release
-# リリース前に作業ディレクトリがクリーンであることを確認
 #
 # Examples:
 #   Clean directory → Continue silently
 #   Modified files → Error: "Working directory is not clean. Please commit or stash your changes."
 #   Untracked files → Error: "Working directory is not clean..."
 #   Staged changes → Error: "Working directory is not clean..."
+#
+# 4. Gitステータスのチェック
+#
+# リリース前に作業ディレクトリがクリーンであることを確認
 #
 # 例:
 #   クリーンなディレクトリ → 静かに続行
@@ -131,16 +139,18 @@ fi
 
 # =====================
 # 5. Sync with Remote
-# 5. リモートとの同期
 #
 # Pull latest changes from remote repository
-# リモートリポジトリから最新の変更をプル
 #
 # Examples:
 #   Up to date → "Already up to date."
 #   New commits → "Updating 1a2b3c4..5d6e7f8"
 #   Merge conflicts → Script will fail and exit
 #   No remote → Error: "fatal: 'origin' does not appear to be a git repository"
+#
+# 5. リモートとの同期
+#
+# リモートリポジトリから最新の変更をプル
 #
 # 例:
 #   最新 → "Already up to date."
@@ -153,16 +163,18 @@ git pull origin main
 
 # =====================
 # 6. Version Consistency Check
-# 6. バージョン整合性チェック
 #
 # Check versions across package.json, package-lock.json, and index.ts
-# package.json、package-lock.json、index.ts間でバージョンをチェック
 #
 # Examples:
 #   All synced → package.json: 0.1.3, package-lock.json: 0.1.3, index.ts: 0.1.3
 #   Mismatch → package.json: 0.1.4, package-lock.json: 0.1.3, index.ts: 0.1.3
 #   Missing version in index.ts → index.ts: (empty)
 #   Different formats → package.json: 1.0.0, index.ts: 1.0.0, package-lock.json: 1.0.0
+#
+# 6. バージョン整合性チェック
+#
+# package.json、package-lock.json、index.ts間でバージョンをチェック
 #
 # 例:
 #   すべて同期 → package.json: 0.1.3, package-lock.json: 0.1.3, index.ts: 0.1.3
@@ -181,16 +193,18 @@ echo "- index.ts: $INDEX_VERSION"
 
 # =====================
 # 7. Version Update Function
-# 7. バージョン更新関数
 #
 # Function to update version in index.ts file
-# index.tsファイルのバージョンを更新する関数
 #
 # Examples:
 #   update_index_version "0.1.3" "0.1.4" → Changes 'version: "0.1.3"' to 'version: "0.1.4"'
 #   update_index_version "1.0.0" "1.1.0" → Changes 'version: "1.0.0"' to 'version: "1.1.0"'
 #   update_index_version "0.1.0" "1.0.0-beta.1" → Changes to pre-release version
 #   With commit message → Also creates git commit with provided message
+#
+# 7. バージョン更新関数
+#
+# index.tsファイルのバージョンを更新する関数
 #
 # 例:
 #   update_index_version "0.1.3" "0.1.4" → 'version: "0.1.3"'を'version: "0.1.4"'に変更
@@ -220,10 +234,8 @@ update_index_version() {
 
 # =====================
 # 8. Version Mismatch Warning
-# 8. バージョン不整合警告
 #
 # Warn if versions differ between files and confirm continuation
-# ファイル間でバージョンが異なる場合に警告し、続行を確認
 #
 # Examples:
 #   No mismatch → Skip this section entirely
@@ -232,6 +244,10 @@ update_index_version() {
 #   With increment → "Will update all files using increment: patch"
 #   User types 'n' → Script exits
 #   User types 'y' → Script continues with synchronization
+#
+# 8. バージョン不整合警告
+#
+# ファイル間でバージョンが異なる場合に警告し、続行を確認
 #
 # 例:
 #   不整合なし → このセクションを完全にスキップ
@@ -259,10 +275,8 @@ fi
 
 # =====================
 # 9. Version Update Process
-# 9. バージョン更新プロセス
 #
 # Update versions in all files and commit changes
-# すべてのファイルでバージョンを更新し、変更をコミット
 #
 # Examples:
 #   patch increment → 0.1.3 → 0.1.4 (package.json, package-lock.json, index.ts)
@@ -271,6 +285,10 @@ fi
 #   specific version → any version → 0.5.0 (package.json, package-lock.json, index.ts)
 #   Creates commit → "chore: release version 0.1.4"
 #   Creates tag → "v0.1.4" with message "Version 0.1.4"
+#
+# 9. バージョン更新プロセス
+#
+# すべてのファイルでバージョンを更新し、変更をコミット
 #
 # 例:
 #   パッチ増分 → 0.1.3 → 0.1.4 (package.json, package-lock.json, index.ts)
@@ -308,10 +326,8 @@ fi
 
 # =====================
 # 10. Push to Remote
-# 10. リモートへのプッシュ
 #
 # Push commit and tag to GitHub repository
-# コミットとタグをGitHubリポジトリにプッシュ
 #
 # Examples:
 #   Successful push → "Enumerating objects: 5, done."
@@ -319,6 +335,10 @@ fi
 #   Authentication required → Prompts for GitHub username/token
 #   Network error → "fatal: unable to access 'https://github.com/...': Could not resolve host"
 #   Push triggers GitHub Actions → Workflow starts automatically for tag v0.1.4
+#
+# 10. リモートへのプッシュ
+#
+# コミットとタグをGitHubリポジトリにプッシュ
 #
 # 例:
 #   成功したプッシュ → "Enumerating objects: 5, done."
@@ -335,10 +355,8 @@ git push origin v$FINAL_VERSION
 
 # =====================
 # 11. Success Message
-# 11. 成功メッセージ
 #
 # Display completion message and next steps
-# 完了メッセージと次のステップを表示
 #
 # Examples:
 #   "Release process completed for version 0.1.4"
@@ -346,6 +364,10 @@ git push origin v$FINAL_VERSION
 #   "Check the Actions tab in your GitHub repository for progress"
 #   User should visit: https://github.com/YourGithub/datetime-mcp-server/actions
 #   NPM package will be available at: https://www.npmjs.com/package/@yournpm/datetime-mcp-server
+#
+# 11. 成功メッセージ
+#
+# 完了メッセージと次のステップを表示
 #
 # 例:
 #   "バージョン0.1.4のリリースプロセスが完了しました"
