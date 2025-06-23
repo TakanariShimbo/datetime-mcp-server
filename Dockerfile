@@ -4,16 +4,13 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
+COPY tsconfig.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (including dev dependencies for building)
+RUN npm ci
 
-# Copy built files
-COPY dist ./dist
+# Copy source code
+COPY index.ts ./
 
-# Set environment variables (can be overridden at runtime)
-ENV DATETIME_FORMAT=iso
-ENV TIMEZONE=UTC
-
-# Run the server
-CMD ["node", "dist/index.js"]
+# Build the project
+RUN npm run build

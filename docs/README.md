@@ -10,26 +10,74 @@ A Model Context Protocol (MCP) server that provides tools to get the current dat
 - Custom date format support
 - Simple tool: `get_current_time`
 
-## Quick Start
+## Usage
 
-1. **Clone this repository**
+Choose one of these examples based on your needs:
 
-   ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
-   ```
+**Basic usage (ISO format):**
 
-2. **Install dependencies**
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"]
+    }
+  }
+}
+```
 
-   ```bash
-   npm ci
-   ```
+**Human-readable format with timezone:**
 
-3. **Build the project**
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "human",
+        "TIMEZONE": "America/New_York"
+      }
+    }
+  }
+}
+```
 
-   ```bash
-   npm run build
-   ```
+**Unix timestamp format:**
+
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "unix",
+        "TIMEZONE": "UTC"
+      }
+    }
+  }
+}
+```
+
+**Custom format:**
+
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "custom",
+        "DATE_FORMAT_STRING": "YYYY/MM/DD HH:mm",
+        "TIMEZONE": "Asia/Tokyo"
+      }
+    }
+  }
+}
+```
 
 ## Configuration
 
@@ -69,51 +117,6 @@ Supported tokens:
 Timezone to use (default: system timezone)
 Examples: "UTC", "America/New_York", "Asia/Tokyo"
 
-## Usage Examples
-
-### Basic usage
-
-```bash
-node dist/index.js
-```
-
-### With custom format
-
-```bash
-DATETIME_FORMAT=human node dist/index.js
-```
-
-### With timezone
-
-```bash
-DATETIME_FORMAT=iso TIMEZONE=America/New_York node dist/index.js
-```
-
-### With custom format string
-
-```bash
-DATETIME_FORMAT=custom DATE_FORMAT_STRING="YYYY/MM/DD HH:mm" node dist/index.js
-```
-
-## Integration with Claude Desktop
-
-Add to your Claude Desktop configuration:
-
-```json
-{
-  "mcpServers": {
-    "datetime": {
-      "command": "npx",
-      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
-      "env": {
-        "DATETIME_FORMAT": "human",
-        "TIMEZONE": "America/New_York"
-      }
-    }
-  }
-}
-```
-
 ## Available Tools
 
 ### `get_current_time`
@@ -124,52 +127,6 @@ Parameters:
 
 - `format` (optional): Output format, overrides DATETIME_FORMAT env var
 - `timezone` (optional): Timezone to use, overrides TIMEZONE env var
-
-## Development
-
-### Build the project
-
-```bash
-npm run build
-```
-
-This compiles TypeScript files to JavaScript in the `dist/` directory.
-
-### Test with MCP Inspector
-
-```bash
-npx @modelcontextprotocol/inspector node dist/index.js
-```
-
-## Creating Your Own MCP Server
-
-To create your own MCP server based on this example:
-
-1. Update `package.json`:
-
-   - Change the `name` field (use @username/package-name format)
-   - Update `description`, `author`, and other metadata
-   - Add repository, bugs, and homepage URLs
-
-2. Modify `index.ts`:
-
-   - Change the server name and version
-   - Add your own tools
-   - Implement your custom logic
-
-3. Update configuration files:
-
-   - `Dockerfile`: Adjust if needed for your dependencies
-   - GitHub workflows: Update if you need different CI/CD
-
-4. Update documentation:
-
-   - Replace this README with your server's documentation
-
-5. Set up publishing:
-   - Create an npm account and generate an access token
-   - Add NPM_TOKEN to your GitHub repository secrets
-   - Use `npm run release` to publish new versions
 
 ## Project Structure
 
@@ -190,6 +147,54 @@ datetime-mcp-server/
 │   └── README_ja.md      # Japanese documentation
 └── dist/                 # Compiled JavaScript (after build)
 ```
+
+## Development
+
+### Method 1: Using Node.js locally
+
+1. **Clone this repository**
+
+   ```bash
+   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
+   cd datetime-mcp-server
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm ci
+   ```
+
+3. **Build the project**
+
+   ```bash
+   npm run build
+   ```
+
+4. **Test with MCP Inspector (optional)**
+
+   ```bash
+   npx @modelcontextprotocol/inspector node dist/index.js
+   ```
+
+### Method 2: Using Docker (No Local Node.js Required)
+
+If you don't have Node.js or npm installed locally, you can use Docker to build the project:
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
+   cd datetime-mcp-server
+   ```
+
+2. **Build and extract with one command**
+
+   ```bash
+   # Build the project inside Docker and output directly to local directory
+   docker build -t datetime-mcp-build .
+   docker run --rm -v $(pwd):/app datetime-mcp-build
+   ```
 
 ## License
 

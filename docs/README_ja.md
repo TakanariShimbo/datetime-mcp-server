@@ -10,26 +10,74 @@
 - カスタム日付形式のサポート
 - シンプルなツール：`get_current_time`
 
-## クイックスタート
+## 使用方法
 
-1. **このリポジトリをクローン**
+ニーズに応じて以下の例から選択してください：
 
-   ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
-   ```
+**基本的な使用方法（ISO形式）:**
 
-2. **依存関係をインストール**
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"]
+    }
+  }
+}
+```
 
-   ```bash
-   npm ci
-   ```
+**人間が読みやすい形式＋タイムゾーン指定:**
 
-3. **プロジェクトをビルド**
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "human",
+        "TIMEZONE": "Asia/Tokyo"
+      }
+    }
+  }
+}
+```
 
-   ```bash
-   npm run build
-   ```
+**Unixタイムスタンプ形式:**
+
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "unix",
+        "TIMEZONE": "UTC"
+      }
+    }
+  }
+}
+```
+
+**カスタム形式:**
+
+```json
+{
+  "mcpServers": {
+    "datetime": {
+      "command": "npx",
+      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
+      "env": {
+        "DATETIME_FORMAT": "custom",
+        "DATE_FORMAT_STRING": "YYYY/MM/DD HH:mm",
+        "TIMEZONE": "Asia/Tokyo"
+      }
+    }
+  }
+}
+```
 
 ## 設定
 
@@ -69,51 +117,6 @@
 使用するタイムゾーン（デフォルト：システムのタイムゾーン）
 例："UTC"、"America/New_York"、"Asia/Tokyo"
 
-## 使用例
-
-### 基本的な使用方法
-
-```bash
-node dist/index.js
-```
-
-### カスタム形式での使用
-
-```bash
-DATETIME_FORMAT=human node dist/index.js
-```
-
-### タイムゾーン指定での使用
-
-```bash
-DATETIME_FORMAT=iso TIMEZONE=Asia/Tokyo node dist/index.js
-```
-
-### カスタム形式文字列での使用
-
-```bash
-DATETIME_FORMAT=custom DATE_FORMAT_STRING="YYYY/MM/DD HH:mm" node dist/index.js
-```
-
-## Claude Desktop との統合
-
-Claude Desktop の設定に追加：
-
-```json
-{
-  "mcpServers": {
-    "datetime": {
-      "command": "npx",
-      "args": ["-y", "@takanarishimbo/datetime-mcp-server"],
-      "env": {
-        "DATETIME_FORMAT": "human",
-        "TIMEZONE": "Asia/Tokyo"
-      }
-    }
-  }
-}
-```
-
 ## 利用可能なツール
 
 ### `get_current_time`
@@ -125,51 +128,63 @@ Claude Desktop の設定に追加：
 - `format`（オプション）：出力形式、DATETIME_FORMAT 環境変数を上書き
 - `timezone`（オプション）：使用するタイムゾーン、TIMEZONE 環境変数を上書き
 
+
 ## 開発
 
-### プロジェクトのビルド
+### 方法1: Node.jsをローカルで使用
 
-```bash
-npm run build
-```
+1. **このリポジトリをクローン**
 
-TypeScript ファイルを`dist/`ディレクトリ内の JavaScript にコンパイルします。
+   ```bash
+   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
+   cd datetime-mcp-server
+   ```
 
-### MCP Inspector でのテスト
+2. **依存関係をインストール**
 
-```bash
-npx @modelcontextprotocol/inspector node dist/index.js
-```
+   ```bash
+   npm ci
+   ```
 
-## 独自の MCP サーバーの作成
+3. **プロジェクトをビルド**
 
-この例を基に独自の MCP サーバーを作成するには：
+   ```bash
+   npm run build
+   ```
 
-1. `package.json`を更新：
+4. **MCP Inspector でのテスト（オプション）**
 
-   - `name`フィールドを変更（@username/package-name 形式を使用）
-   - `description`、`author`、その他のメタデータを更新
-   - repository、bugs、homepage の URL を追加
+   ```bash
+   npx @modelcontextprotocol/inspector node dist/index.js
+   ```
 
-2. `index.ts`を修正：
+### 方法2: Docker を使用（ローカルに Node.js 不要）
 
-   - サーバー名とバージョンを変更
-   - 独自のツールを追加
-   - カスタムロジックを実装
+ローカルに Node.js や npm がインストールされていない場合、Docker を使用してプロジェクトをビルドできます：
 
-3. 設定ファイルを更新：
+1. **リポジトリをクローン**
 
-   - `Dockerfile`：必要に応じて依存関係を調整
-   - GitHub ワークフロー：異なる CI/CD が必要な場合は更新
+   ```bash
+   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
+   cd datetime-mcp-server
+   ```
 
-4. ドキュメントを更新：
+2. **ワンコマンドでビルドと抽出**
 
-   - この README をあなたのサーバーのドキュメントで置き換え
+   ```bash
+   # Docker 内でプロジェクトをビルドし、ローカルディレクトリに直接出力
+   docker build -t datetime-mcp-build . && docker run --rm -v $(pwd):/app datetime-mcp-build
+   ```
 
-5. 公開設定：
-   - npm アカウントを作成してアクセストークンを生成
-   - NPM_TOKEN を GitHub リポジトリのシークレットに追加
-   - `npm run release`を使用して新しいバージョンを公開
+3. **サーバーを実行**
+
+   ```bash
+   # ビルドされたサーバーを Node.js で実行
+   node dist/index.js
+   
+   # または環境変数を指定して実行
+   DATETIME_FORMAT=human TIMEZONE=Asia/Tokyo node dist/index.js
+   ```
 
 ## プロジェクト構造
 
