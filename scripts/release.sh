@@ -204,7 +204,13 @@ update_index_version() {
   local commit_msg=$3
   
   echo "Updating version in index.ts from $old_version to $new_version..."
-  sed -i '' "s/version: \"$old_version\"/version: \"$new_version\"/" index.ts
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    sed -i '' "s/version: \"$old_version\"/version: \"$new_version\"/" index.ts
+  else
+    # Linux
+    sed -i "s/version: \"$old_version\"/version: \"$new_version\"/" index.ts
+  fi
   git add index.ts
   
   if [ -n "$commit_msg" ]; then

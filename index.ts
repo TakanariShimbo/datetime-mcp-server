@@ -163,7 +163,7 @@ const GET_CURRENT_TIME_TOOL: Tool = {
 const server = new Server(
   {
     name: "datetime-mcp-server",
-    version: "0.1.0",
+    version: "0.2.2",
   },
   {
     capabilities: {
