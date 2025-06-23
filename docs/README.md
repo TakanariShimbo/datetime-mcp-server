@@ -128,26 +128,6 @@ Parameters:
 - `format` (optional): Output format, overrides DATETIME_FORMAT env var
 - `timezone` (optional): Timezone to use, overrides TIMEZONE env var
 
-## Project Structure
-
-```
-datetime-mcp-server/
-├── index.ts              # Main server implementation
-├── package.json          # Package configuration
-├── tsconfig.json         # TypeScript configuration
-├── Dockerfile            # Docker configuration
-├── .gitignore            # Git ignore file
-├── .github/
-│   └── workflows/
-│       └── npm-publish.yml   # NPM publish workflow
-├── scripts/
-│   └── release.sh        # Release automation script
-├── docs/
-│   ├── README.md         # This file
-│   └── README_ja.md      # Japanese documentation
-└── dist/                 # Compiled JavaScript (after build)
-```
-
 ## Development
 
 ### Method 1: Using Node.js locally
@@ -195,6 +175,26 @@ If you don't have Node.js or npm installed locally, you can use Docker to build 
    docker build -t datetime-mcp-build .
    docker run --rm -v $(pwd):/app datetime-mcp-build
    ```
+
+## Project Structure
+
+```
+datetime-mcp-server/
+├── index.ts              # Main server implementation
+├── package.json          # Package configuration
+├── tsconfig.json         # TypeScript configuration
+├── Dockerfile            # Docker configuration
+├── .gitignore            # Git ignore file
+├── .github/
+│   └── workflows/
+│       └── npm-publish.yml   # NPM publish workflow
+├── scripts/
+│   └── release.sh        # Release automation script
+├── docs/
+│   ├── README.md         # This file
+│   └── README_ja.md      # Japanese documentation
+└── dist/                 # Compiled JavaScript (after build)
+```
 
 ## License
 
