@@ -259,7 +259,7 @@ function formatDateTime(date: Date, format: string, timezone: string): string {
  *   formatCustomDate(date, "DD/MM/YYYY HH:mm", "UTC") → "15/01/2024 10:30"
  *   formatCustomDate(date, "YY-MM-DD HH:mm:ss", "UTC") → "24-01-15 10:30:45"
  *   Supported tokens: YYYY (4-digit year), YY (2-digit year), MM (month), DD (day)
- *                    HH (24-hour), mm (minutes), ss (seconds)
+ *                     HH (24-hour), mm (minutes), ss (seconds)
  *
  * 5. カスタム日付フォーマッター
  *
