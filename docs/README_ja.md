@@ -22,18 +22,13 @@
 2. **依存関係をインストール**
 
    ```bash
-   npm install
+   npm ci
    ```
 
 3. **プロジェクトをビルド**
 
    ```bash
    npm run build
-   ```
-
-4. **ローカルでテスト**
-   ```bash
-   npm start
    ```
 
 ## 設定

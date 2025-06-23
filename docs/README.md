@@ -22,18 +22,13 @@ A Model Context Protocol (MCP) server that provides tools to get the current dat
 2. **Install dependencies**
 
    ```bash
-   npm install
+   npm ci
    ```
 
 3. **Build the project**
 
    ```bash
    npm run build
-   ```
-
-4. **Test locally**
-   ```bash
-   npm start
    ```
 
 ## Configuration
