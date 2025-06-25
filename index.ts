@@ -1,13 +1,4 @@
 #!/usr/bin/env node
-
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-  Tool,
-} from "@modelcontextprotocol/sdk/types.js";
-
 /**
  * 0. DateTime MCP Server
  *
@@ -57,6 +48,14 @@ import {
  *   DATETIME_FORMAT=human TIMEZONE=America/New_York node dist/index.js
  *   DATETIME_FORMAT=custom DATE_FORMAT_STRING="YYYY-MM-DD HH:mm:ss" node dist/index.js
  */
+
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+  Tool,
+} from "@modelcontextprotocol/sdk/types.js";
 
 /**
  * 1. Environment Configuration
@@ -114,7 +113,7 @@ const TIMEZONE =
  */
 const GET_CURRENT_TIME_TOOL: Tool = {
   name: "get_current_time",
-  description: "Get the current date and time",
+  description: "Get the current date and time in various formats",
   inputSchema: {
     type: "object",
     properties: {
