@@ -135,8 +135,8 @@ Parameters:
 1. **Clone this repository**
 
    ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
+   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+   cd npx-datetime-mcp-server
    ```
 
 2. **Install dependencies**
@@ -164,8 +164,8 @@ If you don't have Node.js or npm installed locally, you can use Docker to build 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
+   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+   cd npx-datetime-mcp-server
    ```
 
 2. **Build and extract with one command**
@@ -179,7 +179,7 @@ If you don't have Node.js or npm installed locally, you can use Docker to build 
 ## Project Structure
 
 ```
-datetime-mcp-server/
+npx-datetime-mcp-server/
 ├── index.ts              # Main server implementation
 ├── package.json          # Package configuration
 ├── tsconfig.json         # TypeScript configuration

@@ -331,7 +331,7 @@ fi
 #
 # Examples:
 #   Successful push → "Enumerating objects: 5, done."
-#   New tag creation → "To github.com:TakanariShimbo/datetime-mcp-server.git * [new tag] v0.1.4 -> v0.1.4"
+#   New tag creation → "To github.com:TakanariShimbo/npx-datetime-mcp-server.git * [new tag] v0.1.4 -> v0.1.4"
 #   Authentication required → Prompts for GitHub username/token
 #   Network error → "fatal: unable to access 'https://github.com/...': Could not resolve host"
 #   Push triggers GitHub Actions → Workflow starts automatically for tag v0.1.4
@@ -342,7 +342,7 @@ fi
 #
 # 例:
 #   成功したプッシュ → "Enumerating objects: 5, done."
-#   新しいタグ作成 → "To github.com:TakanariShimbo/datetime-mcp-server.git * [new tag] v0.1.4 -> v0.1.4"
+#   新しいタグ作成 → "To github.com:TakanariShimbo/npx-datetime-mcp-server.git * [new tag] v0.1.4 -> v0.1.4"
 #   認証が必要 → GitHubユーザー名/トークンのプロンプト
 #   ネットワークエラー → "fatal: unable to access 'https://github.com/...': Could not resolve host"
 #   プッシュでGitHub Actionsがトリガー → タグv0.1.4でワークフローが自動開始
@@ -362,7 +362,7 @@ git push origin v$FINAL_VERSION
 #   "Release process completed for version 0.1.4"
 #   "The GitHub workflow will now build and publish the package to npm"
 #   "Check the Actions tab in your GitHub repository for progress"
-#   User should visit: https://github.com/TakanariShimbo/datetime-mcp-server/actions
+#   User should visit: https://github.com/TakanariShimbo/npx-datetime-mcp-server/actions
 #   NPM package will be available at: https://www.npmjs.com/package/@takanarishimbo/datetime-mcp-server
 #
 # 11. 成功メッセージ

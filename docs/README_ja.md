@@ -136,8 +136,8 @@
 1. **このリポジトリをクローン**
 
    ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
+   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+   cd npx-datetime-mcp-server
    ```
 
 2. **依存関係をインストール**
@@ -165,8 +165,8 @@
 1. **リポジトリをクローン**
 
    ```bash
-   git clone https://github.com/TakanariShimbo/datetime-mcp-server.git
-   cd datetime-mcp-server
+   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+   cd npx-datetime-mcp-server
    ```
 
 2. **ワンコマンドでビルドと抽出**
@@ -189,7 +189,7 @@
 ## プロジェクト構造
 
 ```
-datetime-mcp-server/
+npx-datetime-mcp-server/
 ├── index.ts              # メインサーバー実装
 ├── package.json          # パッケージ設定
 ├── tsconfig.json         # TypeScript設定
