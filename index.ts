@@ -59,7 +59,6 @@ import {
  */
 
 /**
- * =====================
  * 1. Environment Configuration
  *
  * Get configuration from environment variables
@@ -81,7 +80,6 @@ import {
  *   DATETIME_FORMAT="custom" DATE_FORMAT_STRING="YYYY-MM-DD" → カスタム日付形式
  *   TIMEZONE="America/New_York" → ニューヨークのタイムゾーンを使用
  *   環境変数なし → システムタイムゾーンでISO形式をデフォルト使用
- * =====================
  */
 const DATETIME_FORMAT = process.env.DATETIME_FORMAT || "iso";
 const DATE_FORMAT_STRING =
@@ -90,7 +88,6 @@ const TIMEZONE =
   process.env.TIMEZONE || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 /**
- * =====================
  * 2. Tool Definition
  *
  * Define the get_current_time tool with its schema
@@ -114,7 +111,6 @@ const TIMEZONE =
  *   入力: {} → 環境デフォルトを使用
  *   有効な形式: iso, unix, unix_ms, human, date, time, custom
  *   有効なタイムゾーン: 任意のIANAタイムゾーン (例: "UTC", "America/New_York", "Asia/Tokyo")
- * =====================
  */
 const GET_CURRENT_TIME_TOOL: Tool = {
   name: "get_current_time",
@@ -136,7 +132,6 @@ const GET_CURRENT_TIME_TOOL: Tool = {
 };
 
 /**
- * =====================
  * 3. Server Initialization
  *
  * Create MCP server instance with metadata and capabilities
@@ -158,7 +153,6 @@ const GET_CURRENT_TIME_TOOL: Tool = {
  *   機能: tools (ツール機能を提供)
  *   トランスポート: StdioServerTransport (stdin/stdout経由で通信)
  *   プロトコル: Model Context Protocol (MCP)
- * =====================
  */
 const server = new Server(
   {
@@ -173,7 +167,6 @@ const server = new Server(
 );
 
 /**
- * =====================
  * 4. Date Formatting Function
  *
  * Helper function to format date based on format type
@@ -197,7 +190,6 @@ const server = new Server(
  *   formatDateTime(date, "date", "Asia/Tokyo") → "2024-01-15"
  *   formatDateTime(date, "time", "Europe/London") → "10:30:00"
  *   formatDateTime(date, "custom", "UTC") → DATE_FORMAT_STRING環境変数を使用
- * =====================
  */
 function formatDateTime(date: Date, format: string, timezone: string): string {
   // Create date in the specified timezone
@@ -249,7 +241,6 @@ function formatDateTime(date: Date, format: string, timezone: string): string {
 }
 
 /**
- * =====================
  * 5. Custom Date Formatter
  *
  * Simple custom date formatter with token replacement
@@ -271,7 +262,6 @@ function formatDateTime(date: Date, format: string, timezone: string): string {
  *   formatCustomDate(date, "YY-MM-DD HH:mm:ss", "UTC") → "24-01-15 10:30:45"
  *   サポートされるトークン: YYYY (4桁の年), YY (2桁の年), MM (月), DD (日)
  *                         HH (24時間), mm (分), ss (秒)
- * =====================
  */
 function formatCustomDate(
   date: Date,
@@ -307,7 +297,6 @@ function formatCustomDate(
 }
 
 /**
- * =====================
  * 6. Tool List Handler
  *
  * Handle requests to list available tools
@@ -327,14 +316,12 @@ function formatCustomDate(
  *   利用可能なツール: get_current_time
  *   ツール数: 1
  *   このハンドラーは利用可能なツールを尋ねるMCPクライアントに応答
- * =====================
  */
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [GET_CURRENT_TIME_TOOL],
 }));
 
 /**
- * =====================
  * 7. Tool Call Handler
  *
  * Set up the request handler for tool calls
@@ -356,7 +343,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
  *   リクエスト: { name: "get_current_time", arguments: { timezone: "UTC" } } → UTC時刻
  *   リクエスト: { name: "unknown_tool" } → エラー: "Unknown tool: unknown_tool"
  *   無効なタイムゾーン → エラー: "Error formatting date: Invalid time zone specified"
- * =====================
  */
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
@@ -403,7 +389,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 /**
- * =====================
  * 8. Server Startup Function
  *
  * Initialize and run the MCP server with stdio transport
@@ -425,7 +410,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
  *   カスタム形式で → "Default format: custom" + "Custom format string: YYYY-MM-DD"
  *   タイムゾーン付き → "Default timezone: America/New_York"
  *   接続エラー → プロセスはコード1で終了
- * =====================
  */
 async function runServer() {
   const transport = new StdioServerTransport();
@@ -439,7 +423,6 @@ async function runServer() {
 }
 
 /**
- * =====================
  * 9. Server Execution
  *
  * Execute the server and handle fatal errors
@@ -461,7 +444,6 @@ async function runServer() {
  *   依存関係が不足 → "Fatal error running server: Cannot find module"
  *   権限が拒否された → "Fatal error running server: EACCES"
  *   任意の致命的エラー → エラーをログに記録し、コード1で終了
- * =====================
  */
 runServer().catch((error) => {
   console.error("Fatal error running server:", error);
