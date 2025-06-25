@@ -14,7 +14,7 @@
 
 ニーズに応じて以下の例から選択してください：
 
-**基本的な使用方法（ISO形式）:**
+**基本的な使用方法（ISO 形式）:**
 
 ```json
 {
@@ -44,7 +44,7 @@
 }
 ```
 
-**Unixタイムスタンプ形式:**
+**Unix タイムスタンプ形式:**
 
 ```json
 {
@@ -128,10 +128,9 @@
 - `format`（オプション）：出力形式、DATETIME_FORMAT 環境変数を上書き
 - `timezone`（オプション）：使用するタイムゾーン、TIMEZONE 環境変数を上書き
 
-
 ## 開発
 
-### 方法1: Node.jsをローカルで使用
+### 方法 1: Node.js をローカルで使用
 
 1. **このリポジトリをクローン**
 
@@ -158,7 +157,7 @@
    npx @modelcontextprotocol/inspector node dist/index.js
    ```
 
-### 方法2: Docker を使用（ローカルに Node.js 不要）
+### 方法 2: Docker を使用（ローカルに Node.js 不要）
 
 ローカルに Node.js や npm がインストールされていない場合、Docker を使用してプロジェクトをビルドできます：
 
@@ -181,10 +180,106 @@
    ```bash
    # ビルドされたサーバーを Node.js で実行
    node dist/index.js
-   
+
    # または環境変数を指定して実行
    DATETIME_FORMAT=human TIMEZONE=Asia/Tokyo node dist/index.js
    ```
+
+## NPM への公開
+
+このプロジェクトは GitHub Actions を使用した自動 NPM 公開を含んでいます。公開を設定するには：
+
+### 1. NPM アクセストークンの作成
+
+1. **NPM にログイン**（必要に応じてアカウントを作成）
+
+   ```bash
+   npm login
+   ```
+
+2. **アクセストークンの作成**
+   - https://www.npmjs.com/settings/tokens にアクセス
+   - 「Generate New Token」をクリック
+   - 「Automation」を選択（CI/CD 用）
+   - 「Publish」権限レベルを選択
+   - 生成されたトークンをコピー（`npm_`で始まる）
+
+### 2. GitHub リポジトリにトークンを追加
+
+1. **リポジトリ設定に移動**
+
+   - GitHub リポジトリに移動
+   - 「Settings」タブをクリック
+   - 「Secrets and variables」→「Actions」に移動
+
+2. **NPM トークンを追加**
+   - 「New repository secret」をクリック
+   - Name: `NPM_TOKEN`
+   - Value: ステップ 1 でコピーした NPM トークンを貼り付け
+   - 「Add secret」をクリック
+
+### 3. GitHub パーソナルアクセストークンの設定（リリーススクリプト用）
+
+リリーススクリプトは GitHub にプッシュする必要があるため、GitHub トークンが必要です：
+
+1. **GitHub パーソナルアクセストークンの作成**
+
+   - https://github.com/settings/tokens にアクセス
+   - 「Generate new token」→「Generate new token (classic)」をクリック
+   - 有効期限を設定（推奨：90 日またはカスタム）
+   - スコープを選択：
+     - ✅ `repo`（プライベートリポジトリのフルコントロール）
+   - 「Generate token」をクリック
+   - 生成されたトークンをコピー（`ghp_`で始まる）
+
+2. **Git にトークンを設定**
+
+   ```bash
+   # オプション1：GitHub CLIを使用（推奨）
+   gh auth login
+
+   # オプション2：gitを設定してトークンを使用
+   git config --global credential.helper store
+   # パスワードを求められたら、代わりにトークンを使用
+   ```
+
+### 4. 新しいバージョンのリリース
+
+付属のリリーススクリプトを使用して、自動的にバージョン管理、タグ付け、公開をトリガー：
+
+```bash
+# パッチバージョンを増分（0.1.0 → 0.1.1）
+npm run release patch
+
+# マイナーバージョンを増分（0.1.0 → 0.2.0）
+npm run release minor
+
+# メジャーバージョンを増分（0.1.0 → 1.0.0）
+npm run release major
+
+# 特定のバージョンを設定
+npm run release 1.2.3
+```
+
+### 5. 公開の確認
+
+1. **GitHub Actions を確認**
+
+   - リポジトリの「Actions」タブに移動
+   - 「Publish to npm」ワークフローが正常に完了したことを確認
+
+2. **NPM パッケージを確認**
+   - 訪問：https://www.npmjs.com/package/@takanarishimbo/datetime-mcp-server
+   - または実行：`npm view @takanarishimbo/datetime-mcp-server`
+
+### リリースプロセスフロー
+
+1. `release.sh`スクリプトがすべてのファイルのバージョンを更新
+2. git コミットとタグを作成
+3. GitHub にプッシュ
+4. 新しいタグで GitHub Actions ワークフローがトリガー
+5. ワークフローがプロジェクトをビルドして NPM に公開
+6. パッケージが`npm install`でグローバルに利用可能になる
 
 ## プロジェクト構造
 
