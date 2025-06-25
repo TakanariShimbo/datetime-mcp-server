@@ -278,7 +278,8 @@ npm run release 1.2.3
 
 ```
 npx-datetime-mcp-server/
-├── index.ts              # Main server implementation
+├── src/
+│   └── index.ts          # Main server implementation
 ├── package.json          # Package configuration
 ├── tsconfig.json         # TypeScript configuration
 ├── Dockerfile            # Docker configuration
