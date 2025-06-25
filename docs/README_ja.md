@@ -1,3 +1,5 @@
+[English](README.md) | [日本語](README_ja.md) | **README**
+
 # DateTime MCP サーバー
 
 現在の日付と時刻を様々な形式で取得するツールを提供する Model Context Protocol (MCP)サーバーです。このサーバーは MCP サーバーの基本構造を示しており、独自の MCP サーバーを作成する際の参考として使用できます。
