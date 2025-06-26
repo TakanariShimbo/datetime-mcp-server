@@ -132,8 +132,6 @@ Parameters:
 
 ## Development
 
-### Method 1: Using Node.js locally
-
 1. **Clone this repository**
 
    ```bash
@@ -157,25 +155,6 @@ Parameters:
 
    ```bash
    npx @modelcontextprotocol/inspector node dist/index.js
-   ```
-
-### Method 2: Using Docker (No Local Node.js Required)
-
-If you don't have Node.js or npm installed locally, you can use Docker to build the project:
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
-   cd npx-datetime-mcp-server
-   ```
-
-2. **Build and extract with one command**
-
-   ```bash
-   # Build the project inside Docker and output directly to local directory
-   docker build -t datetime-mcp-build .
-   docker run --rm -v $(pwd):/app datetime-mcp-build
    ```
 
 ## Publishing to NPM
@@ -282,7 +261,6 @@ npx-datetime-mcp-server/
 │   └── index.ts          # Main server implementation
 ├── package.json          # Package configuration
 ├── tsconfig.json         # TypeScript configuration
-├── Dockerfile            # Docker configuration
 ├── .gitignore            # Git ignore file
 ├── .github/
 │   └── workflows/

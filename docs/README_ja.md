@@ -132,8 +132,6 @@
 
 ## 開発
 
-### 方法 1: Node.js をローカルで使用
-
 1. **このリポジトリをクローン**
 
    ```bash
@@ -157,34 +155,6 @@
 
    ```bash
    npx @modelcontextprotocol/inspector node dist/index.js
-   ```
-
-### 方法 2: Docker を使用（ローカルに Node.js 不要）
-
-ローカルに Node.js や npm がインストールされていない場合、Docker を使用してプロジェクトをビルドできます：
-
-1. **リポジトリをクローン**
-
-   ```bash
-   git clone https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
-   cd npx-datetime-mcp-server
-   ```
-
-2. **ワンコマンドでビルドと抽出**
-
-   ```bash
-   # Docker 内でプロジェクトをビルドし、ローカルディレクトリに直接出力
-   docker build -t datetime-mcp-build . && docker run --rm -v $(pwd):/app datetime-mcp-build
-   ```
-
-3. **サーバーを実行**
-
-   ```bash
-   # ビルドされたサーバーを Node.js で実行
-   node dist/index.js
-
-   # または環境変数を指定して実行
-   DATETIME_FORMAT=human TIMEZONE=Asia/Tokyo node dist/index.js
    ```
 
 ## NPM への公開
@@ -291,7 +261,6 @@ npx-datetime-mcp-server/
 │   └── index.ts          # メインサーバー実装
 ├── package.json          # パッケージ設定
 ├── tsconfig.json         # TypeScript設定
-├── Dockerfile            # Docker設定
 ├── .gitignore            # Gitの無視ファイル
 ├── .github/
 │   └── workflows/
