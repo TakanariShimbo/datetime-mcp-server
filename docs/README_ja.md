@@ -2,7 +2,7 @@
 
 # DateTime MCP サーバー
 
-現在の日付と時刻を様々な形式で取得するツールを提供する Model Context Protocol (MCP)サーバーです。このサーバーは MCP サーバーの基本構造を示しており、独自の MCP サーバーを作成する際の参考として使用できます。
+現在の日付と時刻を様々な形式で取得するツールを提供する Model Context Protocol (MCP)サーバーです。これは datetime MCP サーバーの TypeScript 実装で、TypeScript SDK を使用して MCP サーバーを構築する方法を示しています。
 
 ## 機能
 

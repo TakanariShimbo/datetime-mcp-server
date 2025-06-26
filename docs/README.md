@@ -2,7 +2,7 @@
 
 # DateTime MCP Server
 
-A Model Context Protocol (MCP) server that provides tools to get the current date and time in various formats. This server demonstrates the basic structure of an MCP server and can be used as a reference for creating your own MCP servers.
+A Model Context Protocol (MCP) server that provides tools to get the current date and time in various formats. This is a TypeScript implementation of the datetime MCP server, demonstrating how to build MCP servers using the TypeScript SDK.
 
 ## Features
 
