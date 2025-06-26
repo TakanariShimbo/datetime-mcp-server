@@ -260,8 +260,8 @@ npx-datetime-mcp-server/
 ├── src/
 │   └── index.ts          # メインサーバー実装
 ├── package.json          # パッケージ設定
+├── package-lock.json
 ├── tsconfig.json         # TypeScript設定
-├── .gitignore            # Gitの無視ファイル
 ├── .github/
 │   └── workflows/
 │       └── npm-publish.yml   # NPM公開ワークフロー
@@ -270,7 +270,7 @@ npx-datetime-mcp-server/
 ├── docs/
 │   ├── README.md         # 英語版ドキュメント
 │   └── README_ja.md      # このファイル
-└── dist/                 # コンパイル済みJavaScript（ビルド後）
+└── .gitignore            # Gitの無視ファイル
 ```
 
 ## ライセンス
