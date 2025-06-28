@@ -1,0 +1,38 @@
+{
+  "dxt_version": "0.1",
+  "name": "@takanarishimbo/datetime-mcp-server",
+  "version": "0.3.0",
+  "description": "A Model Context Protocol server that returns the current date and time",
+  "author": {
+    "name": "TakanariShimbo"
+  },
+  "homepage": "https://github.com/TakanariShimbo/npx-datetime-mcp-server",
+  "documentation": "https://github.com/TakanariShimbo/npx-datetime-mcp-server",
+  "support": "https://github.com/TakanariShimbo/npx-datetime-mcp-server",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "get_current_time",
+      "description": "Get the current date and time in various formats"
+    }
+  ],
+  "keywords": [
+    "datetime"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TakanariShimbo/npx-datetime-mcp-server.git"
+  }
+}
