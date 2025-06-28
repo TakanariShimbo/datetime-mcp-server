@@ -1,6 +1,7 @@
 {
   "dxt_version": "0.1",
-  "name": "datetime",
+  "name": "@takanarishimbo/datetime-mcp-server",
+  "display_name": "datetime",
   "version": "0.3.0",
   "description": "A Model Context Protocol server that returns the current date and time",
   "author": {
