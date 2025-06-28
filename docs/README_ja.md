@@ -253,6 +253,58 @@ npm run release 1.2.3
 5. ワークフローがプロジェクトをビルドして NPM に公開
 6. パッケージが`npm install`でグローバルに利用可能になる
 
+## デスクトップ拡張機能（DXT）の作成
+
+デスクトップ拡張機能（.dxt）により、Claude Desktop で MCP サーバーをワンクリックでインストールできます。このサーバーの DXT ファイルを作成する方法：
+
+### 1. DXT マニフェストの初期化
+
+プロジェクトのルートディレクトリで以下のコマンドを実行：
+
+```bash
+npx @anthropic-ai/dxt init
+```
+
+これにより `manifest.json` ファイルが作成されます。このプロジェクトでの回答例：
+
+```
+✔ Extension name: @takanarishimbo/datetime-mcp-server
+✔ Author name: TakanariShimbo
+✔ Display name (optional): datetime
+✔ Version: 0.3.0
+✔ Description: A Model Context Protocol server that returns the current date and time
+✔ Add a detailed long description? no
+✔ Author email (optional): 
+✔ Author URL (optional): 
+✔ Homepage URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Documentation URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Support URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Icon file path (optional, relative to manifest): icon.png
+✔ Add screenshots? no
+✔ Server type: Node.js
+✔ Entry point: dist/index.js
+✔ Does your MCP Server provide tools you want to advertise (optional)? yes
+✔ Tool name: get_current_time
+✔ Tool description (optional): Get the current date and time in various formats
+✔ Add another tool? no
+✔ Does your server generate additional tools at runtime? no
+✔ Does your MCP Server provide prompts you want to advertise (optional)? no
+✔ Add compatibility constraints? no
+✔ Add user-configurable options? no
+✔ Keywords (comma-separated, optional): datetime
+✔ License: MIT
+✔ Add repository information? yes
+✔ Repository URL: git+https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+```
+
+### 2. DXT パッケージの作成
+
+```bash
+npx @anthropic-ai/dxt pack
+```
+
+これにより、ユーザーが Claude Desktop にワンクリックでインストールできる `.dxt` ファイルが作成されます。
+
 ## プロジェクト構造
 
 ```

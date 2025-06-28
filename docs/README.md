@@ -253,6 +253,58 @@ npm run release 1.2.3
 5. Workflow builds project and publishes to NPM
 6. Package becomes available globally via `npm install`
 
+## Creating Desktop Extension (DXT)
+
+Desktop Extensions (.dxt) enable one-click installation of MCP servers in Claude Desktop. To create a DXT file for this server:
+
+### 1. Initialize DXT Manifest
+
+Run this command in the project root directory:
+
+```bash
+npx @anthropic-ai/dxt init
+```
+
+This will guide you through creating a `manifest.json` file. Here are the answers for this project:
+
+```
+✔ Extension name: @takanarishimbo/datetime-mcp-server
+✔ Author name: TakanariShimbo
+✔ Display name (optional): datetime
+✔ Version: 0.3.0
+✔ Description: A Model Context Protocol server that returns the current date and time
+✔ Add a detailed long description? no
+✔ Author email (optional): 
+✔ Author URL (optional): 
+✔ Homepage URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Documentation URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Support URL (optional): https://github.com/TakanariShimbo/npx-datetime-mcp-server
+✔ Icon file path (optional, relative to manifest): icon.png
+✔ Add screenshots? no
+✔ Server type: Node.js
+✔ Entry point: dist/index.js
+✔ Does your MCP Server provide tools you want to advertise (optional)? yes
+✔ Tool name: get_current_time
+✔ Tool description (optional): Get the current date and time in various formats
+✔ Add another tool? no
+✔ Does your server generate additional tools at runtime? no
+✔ Does your MCP Server provide prompts you want to advertise (optional)? no
+✔ Add compatibility constraints? no
+✔ Add user-configurable options? no
+✔ Keywords (comma-separated, optional): datetime
+✔ License: MIT
+✔ Add repository information? yes
+✔ Repository URL: git+https://github.com/TakanariShimbo/npx-datetime-mcp-server.git
+```
+
+### 2. Create DXT Package
+
+```bash
+npx @anthropic-ai/dxt pack
+```
+
+This creates a `.dxt` file that users can install in Claude Desktop with a single click.
+
 ## Project Structure
 
 ```
