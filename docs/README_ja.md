@@ -260,17 +260,20 @@ npx-datetime-mcp-server/
 ├── src/
 │   └── index.ts          # メインサーバー実装
 ├── package.json          # パッケージ設定
-├── package-lock.json
+├── package-lock.json     # 依存関係ロックファイル
 ├── tsconfig.json         # TypeScript設定
+├── scripts/
+│   └── release.sh        # リリース自動化スクリプト
 ├── .github/
 │   └── workflows/
 │       └── npm-publish.yml   # NPM公開ワークフロー
-├── scripts/
-│   └── release.sh        # リリース自動化スクリプト
+├── manifest.json         # DXTファイル用MCPサーバーマニフェスト
+├── icon.png              # DXTファイル用アイコン
+├── datetime.dxt          # DXTファイル
+├── .gitignore            # Gitの無視ファイル
 ├── docs/
-│   ├── README.md         # 英語版ドキュメント
-│   └── README_ja.md      # このファイル
-└── .gitignore            # Gitの無視ファイル
+    ├── README.md         # 英語版ドキュメント
+    └── README_ja.md      # 日本語版ドキュメント
 ```
 
 ## ライセンス
